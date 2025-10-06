@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="DELETE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Impede de criar o mesmo curso X pra mesma data X.</description>
+        <field>course_date</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Same Course and Date check</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
+    if (isLoading || !newValue) return;
+
+    var course = g_form.getValue('title_course'); // Campo com o nome do curso na tabela agenda.
+    var date = newValue; // ou g_form.getValue('course_date') checar
+
+    if (!course) {
+        g_form.showFieldMsg('title_course', 'Selecione um curso antes de escolher a data.', 'info');
+        return;
+    }
+
+    var ga = new GlideAjax('AgendaUtils');
+    ga.addParam('sysparm_name', 'checkDuplicateAgenda');
+    ga.addParam('sysparm_course', course);
+    ga.addParam('sysparm_date', date);
+    ga.getXMLAnswer(function(answer) {
+        if (answer === 'true') {
+            g_form.showFieldMsg('course_date', '⚠️ Já existe um treinamento deste curso nesta data.', 'error');
+            g_form.setValue('course_date', '');
+        } else {
+            // remove mensagem de erro caso já existisse
+            g_form.hideFieldMsg('course_date', true);
+        }
+    });
+}
+]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 20:16:05</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9100143783183210c31199c0deaad3f9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Same Course and Date check</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_update_name>sys_script_client_9100143783183210c31199c0deaad3f9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 20:16:05</sys_updated_on>
+        <table>x_1795292_learni_0_agenda</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</application>
+        <file_path/>
+        <instance_id>fd0d775d1b460a1465324089bd4bcb6c</instance_id>
+        <instance_name>dev265639</instance_name>
+        <name>sys_script_client_9100143783183210c31199c0deaad3f9</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;applies_extended&gt;false&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description&gt;Impede de criar o mesmo curso X pra mesma data X.&lt;/description&gt;&lt;field&gt;course_date&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;messages/&gt;&lt;name&gt;Same Course and Date check&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[function onChange(control, oldValue, newValue, isLoading) {
+    if (isLoading || !newValue) return;
+
+    var course = g_form.getValue('title_course'); // Campo com o nome do curso na tabela agenda.
+    var date = newValue; // ou g_form.getValue('course_date') checar
+
+    if (!course) {
+        g_form.showFieldMsg('title_course', 'Selecione um curso antes de escolher a data.', 'info');
+        return;
+    }
+
+    var ga = new GlideAjax('AgendaUtils');
+    ga.addParam('sysparm_name', 'checkDuplicateAgenda');
+    ga.addParam('sysparm_course', course);
+    ga.addParam('sysparm_date', date);
+    ga.getXMLAnswer(function(answer) {
+        if (answer === 'true') {
+            g_form.showFieldMsg('course_date', '⚠️ Já existe um treinamento deste curso nesta data.', 'error');
+            g_form.setValue('course_date', '');
+        } else {
+            // remove mensagem de erro caso já existisse
+            g_form.hideFieldMsg('course_date', true);
+        }
+    });
+}
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-10-06 20:16:05&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;9100143783183210c31199c0deaad3f9&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;Same Course and Date check&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Learning Now" source="x_1795292_learni_0"&gt;a0c37a2b83503210c31199c0deaad36a&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Learning Now"&gt;a0c37a2b83503210c31199c0deaad36a&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_9100143783183210c31199c0deaad3f9&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-10-06 20:16:05&lt;/sys_updated_on&gt;&lt;table&gt;x_1795292_learni_0_agenda&lt;/table&gt;&lt;type&gt;onChange&lt;/type&gt;&lt;ui_type&gt;10&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>155740099</payload_hash>
+        <record_name>Same Course and Date check</record_name>
+        <reverted_from/>
+        <source>94b4f26b83503210c31199c0deaad35a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 20:16:05</sys_created_on>
+        <sys_id>31c250b783183210c31199c0deaad3b6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>199bb2ac2710000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 20:16:05</sys_updated_on>
+        <type>Client Script</type>
+        <update_guid>35c250b7ef183210fe204602473088b5</update_guid>
+        <update_guid_history>35c250b7ef183210fe204602473088b5:155740099</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 20:27:32</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_client">sys_script_client</sys_db_object>
+        <sys_id>bcce785252c345a894968ef32d8f7ee4</sys_id>
+        <sys_metadata>9100143783183210c31199c0deaad3f9</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Same Course and Date check</sys_name>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_parent display_value="Agenda">02793aef83503210c31199c0deaad3d4</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_scope_delete display_value="">01db6280883f40288003e040e0700cb1</sys_scope_delete>
+        <sys_update_name>sys_script_client_9100143783183210c31199c0deaad3f9</sys_update_name>
+        <sys_update_version display_value="sys_script_client_9100143783183210c31199c0deaad3f9">31c250b783183210c31199c0deaad3b6</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 20:27:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

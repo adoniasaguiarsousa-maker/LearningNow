@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="681536ab83503210c31199c0deaad30f" label="Course" max_length="40" name="x_1795292_learni_0_course" type="collection">
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element display="true" label="Course Name" max_length="250" name="course_name" type="string"/>
+        <element label="Duration(in hours)" max_length="100" name="duration" type="integer"/>
+        <element label="Description" max_length="4000" name="description" type="string"/>
+        <element label="Short Description" max_length="1000" name="short_description" type="string"/>
+    </element>
+</database>

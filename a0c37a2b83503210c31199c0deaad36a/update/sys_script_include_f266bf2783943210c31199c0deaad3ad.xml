@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_1795292_learni_0.LearningNowUtils</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>LearningNowUtils</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var LearningNowUtils = Class.create();
+LearningNowUtils.prototype = {
+    initialize: function() {},
+
+    refQualAgenda: function(current) {
+        // Aqui eu pego a variável do record producer
+        var courseID = current.variables.training_title;
+
+        // Se ainda não escolheu um curso, não mostra nada
+        if (!courseID)
+            return "sys_idIN";
+
+        var agendas = [];
+        var gr = new GlideRecord("x_1795292_learni_0_agenda"); //Acessando minha tabela Agenda
+        gr.addQuery("title_course", courseID); // Acessando o campo reference pra tabela Course
+        gr.query();
+
+        while (gr.next()) {
+            agendas.push(gr.getUniqueValue());
+        }
+
+        // retorna apenas os registros da tabela Agenda com esse curso escolhido
+        return "sys_idIN" + agendas.join(",");
+    },
+
+    type: 'LearningNowUtils'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 18:13:38</sys_created_on>
+        <sys_id>f266bf2783943210c31199c0deaad3ad</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>LearningNowUtils</sys_name>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_update_name>sys_script_include_f266bf2783943210c31199c0deaad3ad</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 18:34:02</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>f266bf2783943210c31199c0deaad3ad</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 18:13:37</sys_created_on>
+        <sys_id>33b6f3ab83943210c31199c0deaad353</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 18:13:37</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_1795292_learni_0.AgendaUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>Impede de criar o mesmo curso X pra mesma data X.</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AgendaUtils</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AgendaUtils = Class.create();
+AgendaUtils.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+    /**
+     * Chamada via GlideAjax:
+     * ga.addParam('sysparm_name','checkDuplicateAgenda');
+     * ga.addParam('sysparm_course', courseSysId);
+     * ga.addParam('sysparm_date', dateValue);
+     *
+     * Retorna 'true' ou 'false' (string).
+     */
+    checkDuplicateAgenda: function() {
+        var course = this.getParameter('sysparm_course');
+        var date = this.getParameter('sysparm_date');
+
+        if (!course || !date)
+            return 'false';
+
+        var gr = new GlideRecordSecure('x_1795292_learni_0_agenda');
+        gr.addQuery('title_course', course);
+
+        // substitua 'course_date' pelo nome exato do campo de data na sua tabela Agenda
+        gr.addQuery('course_date', date);
+
+        gr.query();
+        return (gr.hasNext()).toString(); // 'true' ou 'false'
+    },
+
+    type: 'AgendaUtils'
+});
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 20:03:21</sys_created_on>
+        <sys_id>c05f48b783183210c31199c0deaad380</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>AgendaUtils</sys_name>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_update_name>sys_script_include_c05f48b783183210c31199c0deaad380</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 20:26:24</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="DELETE">
+        <id>c05f48b783183210c31199c0deaad380</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 20:03:21</sys_created_on>
+        <sys_id>07df40b783183210c31199c0deaad3ad</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 20:03:21</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</application>
+        <file_path/>
+        <instance_id>fd0d775d1b460a1465324089bd4bcb6c</instance_id>
+        <instance_name>dev265639</instance_name>
+        <name>sys_script_include_c05f48b783183210c31199c0deaad380</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_1795292_learni_0.AgendaUtils&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;true&lt;/client_callable&gt;&lt;description&gt;Impede de criar o mesmo curso X pra mesma data X.&lt;/description&gt;&lt;mobile_callable&gt;false&lt;/mobile_callable&gt;&lt;name&gt;AgendaUtils&lt;/name&gt;&lt;sandbox_callable&gt;false&lt;/sandbox_callable&gt;&lt;script&gt;&lt;![CDATA[var AgendaUtils = Class.create();
+AgendaUtils.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+    /**
+     * Chamada via GlideAjax:
+     * ga.addParam('sysparm_name','checkDuplicateAgenda');
+     * ga.addParam('sysparm_course', courseSysId);
+     * ga.addParam('sysparm_date', dateValue);
+     *
+     * Retorna 'true' ou 'false' (string).
+     */
+    checkDuplicateAgenda: function() {
+        var course = this.getParameter('sysparm_course');
+        var date = this.getParameter('sysparm_date');
+
+        if (!course || !date)
+            return 'false';
+
+        var gr = new GlideRecordSecure('x_1795292_learni_0_agenda');
+        gr.addQuery('title_course', course);
+
+        // substitua 'course_date' pelo nome exato do campo de data na sua tabela Agenda
+        gr.addQuery('course_date', date);
+
+        gr.query();
+        return (gr.hasNext()).toString(); // 'true' ou 'false'
+    },
+
+    type: 'AgendaUtils'
+});
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-10-06 20:03:21&lt;/sys_created_on&gt;&lt;sys_id&gt;c05f48b783183210c31199c0deaad380&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;AgendaUtils&lt;/sys_name&gt;&lt;sys_package display_value="Learning Now" source="x_1795292_learni_0"&gt;a0c37a2b83503210c31199c0deaad36a&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="Learning Now"&gt;a0c37a2b83503210c31199c0deaad36a&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_c05f48b783183210c31199c0deaad380&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-10-06 20:26:24&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;sys_es_latest_script action="INSERT_OR_UPDATE"&gt;&lt;id&gt;c05f48b783183210c31199c0deaad380&lt;/id&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-10-06 20:03:21&lt;/sys_created_on&gt;&lt;sys_id&gt;07df40b783183210c31199c0deaad3ad&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-10-06 20:03:21&lt;/sys_updated_on&gt;&lt;table&gt;sys_script_include&lt;/table&gt;&lt;use_es_latest&gt;true&lt;/use_es_latest&gt;&lt;/sys_es_latest_script&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-578297916</payload_hash>
+        <record_name>AgendaUtils</record_name>
+        <reverted_from/>
+        <source>94b4f26b83503210c31199c0deaad35a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 20:26:24</sys_created_on>
+        <sys_id>c5259c7783183210c31199c0deaad38c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>199bb3435270000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 20:26:24</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>4d259c7758183210649f6abc15cafc8b</update_guid>
+        <update_guid_history>4d259c7758183210649f6abc15cafc8b:-578297916,eeff44b76d18321037fa524ce5217b59:350148091,9bdf843702183210b71bf2b8fcc1172f:-416943057</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-06 20:27:16</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>55ce30880343422892b873076112e090</sys_id>
+        <sys_metadata>c05f48b783183210c31199c0deaad380</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AgendaUtils</sys_name>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_scope_delete display_value="">01db6280883f40288003e040e0700cb1</sys_scope_delete>
+        <sys_update_name>sys_script_include_c05f48b783183210c31199c0deaad380</sys_update_name>
+        <sys_update_version display_value="sys_script_include_c05f48b783183210c31199c0deaad380">c5259c7783183210c31199c0deaad38c</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-06 20:27:16</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
