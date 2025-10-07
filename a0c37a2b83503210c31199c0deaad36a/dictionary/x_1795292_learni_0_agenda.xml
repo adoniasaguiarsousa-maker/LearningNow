@@ -2,7 +2,7 @@
     <element db_object_id="02793aef83503210c31199c0deaad3d4" label="Agenda" max_length="40" name="x_1795292_learni_0_agenda" type="collection">
         <element label="Title Course" max_length="32" name="title_course" reference="x_1795292_learni_0_course" type="reference"/>
         <element label="Available Slots" max_length="40" name="available_slots" type="integer"/>
-        <element label="Course Instructor" max_length="32" name="course_instructor" reference="sys_user" type="reference"/>
+        <element label="Course Instructor" max_length="32" name="course_instructor" reference="sys_user" reference_qual="roles=x_1795292_learni_0.learning instructor^EQ" reference_qual_condition="roles=x_1795292_learni_0.learning instructor^EQ" type="reference"/>
         <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
         <element display="true" label="Course Date" max_length="40" name="course_date" type="glide_date"/>
         <index name="index">

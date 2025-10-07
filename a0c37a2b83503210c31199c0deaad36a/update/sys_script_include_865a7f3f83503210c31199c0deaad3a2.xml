@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_1795292_learni_0.AgendaUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AgendaUtils</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AgendaUtils = Class.create();
+AgendaUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    checkDuplicateDate: function() {
+        var date = this.getParameter('sysparm_date');
+        var course = this.getParameter('sysparm_course');
+
+        // Converter de DD/MM/YYYY para YYYY-MM-DD Necessário para rodar
+        if (date.indexOf('/') > -1) {
+            var parts = date.split('/');
+            date = parts[2] + '-' + parts[1] + '-' + parts[0];
+        }
+
+        var gr = new GlideRecord("x_1795292_learni_0_agenda");
+        gr.addQuery('course_date', date);
+        gr.addQuery('title_course', course);
+        gr.query();
+
+        if (gr.next()) {
+            return 'true';
+        }
+
+        return 'false';
+    }
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-07 13:10:55</sys_created_on>
+        <sys_id>865a7f3f83503210c31199c0deaad3a2</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>AgendaUtils</sys_name>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_update_name>sys_script_include_865a7f3f83503210c31199c0deaad3a2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-07 14:12:05</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>865a7f3f83503210c31199c0deaad3a2</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-07 13:10:55</sys_created_on>
+        <sys_id>db0b373f83503210c31199c0deaad3d1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-07 13:10:55</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
