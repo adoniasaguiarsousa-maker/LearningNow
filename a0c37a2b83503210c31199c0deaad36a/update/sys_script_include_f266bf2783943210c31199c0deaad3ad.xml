@@ -12,26 +12,90 @@
         <script><![CDATA[var LearningNowUtils = Class.create();
 LearningNowUtils.prototype = {
     initialize: function() {},
-
+	//Ref Qual pro campo da data
     refQualAgenda: function(current) {
-        // Aqui eu pego a variável do record producer
+        // Pega o curso selecionado
         var courseID = current.variables.training_title;
+        var userID = gs.getUserID(); // Usuário atual logado no portal
 
-        // Se ainda não escolheu um curso, não mostra nada
         if (!courseID)
             return "sys_idIN";
 
         var agendas = [];
-        var gr = new GlideRecord("x_1795292_learni_0_agenda"); //Acessando minha tabela Agenda
-        gr.addQuery("title_course", courseID); // Acessando o campo reference pra tabela Course
-        gr.query();
+        var grAgenda = new GlideRecord("x_1795292_learni_0_agenda");
+        grAgenda.addQuery("title_course", courseID);
+        grAgenda.query();
 
-        while (gr.next()) {
-            agendas.push(gr.getUniqueValue());
+        while (grAgenda.next()) {
+            agendas.push(grAgenda.getUniqueValue());
         }
 
-        // retorna apenas os registros da tabela Agenda com esse curso escolhido
+        // Agora remove agendas que o usuário já está inscrito
+        var enrolledAgendas = [];
+        var grEnroll = new GlideRecord("x_1795292_learni_0_enrollment");
+        grEnroll.addQuery("opened_by", userID);
+        grEnroll.query();
+
+        while (grEnroll.next()) {
+            var agenda = grEnroll.getValue("training_date"); // campo reference pra tabela agenda
+            if (agenda)
+                enrolledAgendas.push(agenda);
+        }
+
+        // Se tiver alguma inscrição, remove essas agendas da lista
+        if (enrolledAgendas.length > 0) {
+            agendas = agendas.filter(function(a) {
+                return enrolledAgendas.indexOf(a) === -1;
+            });
+        }
+
+        // Retorna só as agendas do curso ainda disponíveis pro usuário
         return "sys_idIN" + agendas.join(",");
+    },
+
+	// Ref Qual pro o campo do nome do curso
+    refQualCourse: function(current) {
+        var userID = gs.getUserID();
+
+        var availableCourses = [];
+        var courseCounts = {};
+
+        // Conta quantas agendas (datas) o usuário tem por curso
+        var grEnroll = new GlideRecord("x_1795292_learni_0_enrollment");
+        grEnroll.addQuery("opened_by", userID);
+        grEnroll.query();
+
+        while (grEnroll.next()) {
+            var agendaID = grEnroll.getValue("training_date");
+            if (!agendaID) continue;
+
+            // Busca o curso dessa agenda
+            var grAgenda = new GlideRecord("x_1795292_learni_0_agenda");
+            if (grAgenda.get(agendaID)) {
+                var courseID = grAgenda.getValue("title_course");
+                if (courseID) {
+                    if (!courseCounts[courseID])
+                        courseCounts[courseID] = 0;
+                    courseCounts[courseID]++;
+                }
+            }
+        }
+
+        // Agora busca todos os cursos
+        var grCourse = new GlideRecord("x_1795292_learni_0_course");
+		grCourse.addQuery("active", true);
+		//grCourse.addQuery("instructor", "!=", userID);
+        grCourse.query();
+        while (grCourse.next()) {
+            var id = grCourse.getUniqueValue();
+            var count = courseCounts[id] || 0;
+
+            // Só mostra cursos onde o usuário tem menos de 3 inscrições
+            if (count < 3)
+                availableCourses.push(id);
+        }
+
+        return "sys_idIN" + availableCourses.join(",");
     },
 
     type: 'LearningNowUtils'
@@ -41,14 +105,14 @@ LearningNowUtils.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-06 18:13:38</sys_created_on>
         <sys_id>f266bf2783943210c31199c0deaad3ad</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>LearningNowUtils</sys_name>
         <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
         <sys_update_name>sys_script_include_f266bf2783943210c31199c0deaad3ad</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-06 18:34:02</sys_updated_on>
+        <sys_updated_on>2025-10-07 21:00:16</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>f266bf2783943210c31199c0deaad3ad</id>
