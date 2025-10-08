@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="DELETE">
+        <category display_value="Translation Learning Now">a8efc51483a03210c31199c0deaad321</category>
+        <order>1</order>
+        <property display_value="x_1795292_learni_0.active" name="x_1795292_learni_0.active">4010991483a03210c31199c0deaad3a5</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-08 14:02:27</sys_created_on>
+        <sys_id>c47095dc83603210c31199c0deaad3ca</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1795292_learni_0.active.Translation Learning Now</sys_name>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_c47095dc83603210c31199c0deaad3ca</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-08 14:02:27</sys_updated_on>
+    </sys_properties_category_m2m>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</application>
+        <file_path/>
+        <instance_id>fd0d775d1b460a1465324089bd4bcb6c</instance_id>
+        <instance_name>dev265639</instance_name>
+        <name>sys_properties_category_m2m_c47095dc83603210c31199c0deaad3ca</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m"><sys_properties_category_m2m action="INSERT_OR_UPDATE"><category display_value="Translation Learning Now">a8efc51483a03210c31199c0deaad321</category><order>1</order><property display_value="x_1795292_learni_0.active" name="x_1795292_learni_0.active">4010991483a03210c31199c0deaad3a5</property><sys_class_name>sys_properties_category_m2m</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-10-08 14:02:27</sys_created_on><sys_id>c47095dc83603210c31199c0deaad3ca</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_1795292_learni_0.active.Translation Learning Now</sys_name><sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package><sys_policy/><sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope><sys_update_name>sys_properties_category_m2m_c47095dc83603210c31199c0deaad3ca</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-10-08 14:02:27</sys_updated_on></sys_properties_category_m2m></record_update>]]></payload>
+        <payload_hash>404202665</payload_hash>
+        <record_name>x_1795292_learni_0.active.Translation Learning Now</record_name>
+        <reverted_from/>
+        <source>94b4f26b83503210c31199c0deaad35a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-08 14:02:27</sys_created_on>
+        <sys_id>4c70515483a03210c31199c0deaad39a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>199c42167a60000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-08 14:02:27</sys_updated_on>
+        <type>Category Property</type>
+        <update_guid>40705154f5a03210ebb7e2a7082de29a</update_guid>
+        <update_guid_history>40705154f5a03210ebb7e2a7082de29a:404202665</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-08 14:09:10</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties_category_m2m">sys_properties_category_m2m</sys_db_object>
+        <sys_id>3c1de82b834d4bd08b9df3f3228ac9c4</sys_id>
+        <sys_metadata>c47095dc83603210c31199c0deaad3ca</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1795292_learni_0.active.Translation Learning Now</sys_name>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_scope_delete display_value="">01db6280883f40288003e040e0700cb1</sys_scope_delete>
+        <sys_update_name>sys_properties_category_m2m_c47095dc83603210c31199c0deaad3ca</sys_update_name>
+        <sys_update_version display_value="sys_properties_category_m2m_c47095dc83603210c31199c0deaad3ca">4c70515483a03210c31199c0deaad39a</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-08 14:09:10</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

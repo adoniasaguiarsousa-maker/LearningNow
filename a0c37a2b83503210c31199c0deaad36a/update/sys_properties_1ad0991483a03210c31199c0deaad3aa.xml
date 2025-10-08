@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>apikey da API</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_1795292_learni_0.apikey</name>
+        <read_roles/>
+        <suffix>apikey</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-08 14:04:14</sys_created_on>
+        <sys_id>1ad0991483a03210c31199c0deaad3aa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1795292_learni_0.apikey</sys_name>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_update_name>sys_properties_1ad0991483a03210c31199c0deaad3aa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-08 14:04:14</sys_updated_on>
+        <type>string</type>
+        <value>2f5eff2c08msh825533ac0f0c982p1f33a9jsn9f27c73c0442</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=1ad0991483a03210c31199c0deaad3aa"/>
+</record_update>
