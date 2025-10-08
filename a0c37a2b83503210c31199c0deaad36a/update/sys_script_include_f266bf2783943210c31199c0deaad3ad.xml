@@ -12,7 +12,7 @@
         <script><![CDATA[var LearningNowUtils = Class.create();
 LearningNowUtils.prototype = {
     initialize: function() {},
-	//Ref Qual pro campo da data
+    //Ref Qual pro campo da data
     refQualAgenda: function(current) {
         // Pega o curso selecionado
         var courseID = current.variables.training_title;
@@ -22,8 +22,12 @@ LearningNowUtils.prototype = {
             return "sys_idIN";
 
         var agendas = [];
+		var tomorrow = new GlideDateTime();
+		tomorrow.addDaysLocalTime(1);
+
         var grAgenda = new GlideRecord("x_1795292_learni_0_agenda");
         grAgenda.addQuery("title_course", courseID);
+		grAgenda.addQuery("course_date", ">=", tomorrow);
         grAgenda.query();
 
         while (grAgenda.next()) {
@@ -53,12 +57,23 @@ LearningNowUtils.prototype = {
         return "sys_idIN" + agendas.join(",");
     },
 
-	// Ref Qual pro o campo do nome do curso
+    // Ref Qual pro o campo do nome do curso
     refQualCourse: function(current) {
         var userID = gs.getUserID();
 
         var availableCourses = [];
         var courseCounts = {};
+        var instructorCourses = [];
+
+		//Buscando os cursos que o user atual está dando aula.
+        var grInstr = new GlideRecord("x_1795292_learni_0_agenda");
+        grInstr.addQuery("course_instructor", userID);
+        grInstr.query();
+        while (grInstr.next()) {
+            var c = grInstr.getValue("title_course");
+            if (c && instructorCourses.indexOf(c) === -1)
+                instructorCourses.push(c);
+        }
 
         // Conta quantas agendas (datas) o usuário tem por curso
         var grEnroll = new GlideRecord("x_1795292_learni_0_enrollment");
@@ -83,15 +98,15 @@ LearningNowUtils.prototype = {
 
         // Agora busca todos os cursos
         var grCourse = new GlideRecord("x_1795292_learni_0_course");
-		grCourse.addQuery("active", true);
-		//grCourse.addQuery("instructor", "!=", userID);
+        grCourse.addQuery("active", true);
         grCourse.query();
+
         while (grCourse.next()) {
             var id = grCourse.getUniqueValue();
             var count = courseCounts[id] || 0;
 
-            // Só mostra cursos onde o usuário tem menos de 3 inscrições
-            if (count < 3)
+            // Só mostra cursos onde o usuário tem menos de 3 inscrições e que não é um instrutor tb
+            if (count < 3 && instructorCourses.indexOf(id) === -1)
                 availableCourses.push(id);
         }
 
@@ -99,20 +114,19 @@ LearningNowUtils.prototype = {
     },
 
     type: 'LearningNowUtils'
-};
-]]></script>
+};]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-06 18:13:38</sys_created_on>
         <sys_id>f266bf2783943210c31199c0deaad3ad</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>LearningNowUtils</sys_name>
         <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
         <sys_update_name>sys_script_include_f266bf2783943210c31199c0deaad3ad</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-07 21:00:16</sys_updated_on>
+        <sys_updated_on>2025-10-08 12:48:29</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>f266bf2783943210c31199c0deaad3ad</id>
