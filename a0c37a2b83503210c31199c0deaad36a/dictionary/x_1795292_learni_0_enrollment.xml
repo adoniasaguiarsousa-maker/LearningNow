@@ -2,6 +2,7 @@
     <element db_object_id="439a726383903210c31199c0deaad3a6" extends="task" label="Enrollment" max_length="40" name="x_1795292_learni_0_enrollment" type="collection">
         <element label="Training Date" max_length="32" name="training_date" reference="x_1795292_learni_0_agenda" reference_floats="true" type="reference"/>
         <element label="Slots" max_length="32" name="slots" reference="x_1795292_learni_0_agenda" type="reference"/>
+        <element display="true" label="Student" max_length="32" name="student" reference="sys_user" type="reference"/>
         <element label="Training Title" max_length="32" name="training_title" reference="x_1795292_learni_0_course" type="reference"/>
     </element>
 </database>

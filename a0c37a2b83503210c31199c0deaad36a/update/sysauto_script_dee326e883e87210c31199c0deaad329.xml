@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 09:00:00</entered_time>
+        <max_drift/>
+        <name>Enrollment Daily List</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2025-10-09 14:45:38</run_start>
+        <run_time>1970-01-01 12:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[(function() {
+    // Pega a data atual (apenas data, sem hora)
+    var today = new GlideDateTime();
+    var todayStr = today.getLocalDate().toString(); // formato YYYY-MM-DD
+
+    // Busca agendas ativas com a data de hoje
+    var agendaGR = new GlideRecord('x_1795292_learni_0_agenda');
+    agendaGR.addQuery('course_date', todayStr);
+    agendaGR.addQuery('active', true);
+    agendaGR.query();
+
+    while (agendaGR.next()) {
+        var instructor = agendaGR.course_instructor;
+        if (!instructor) continue;
+
+        // Busca matrículas ligadas a esta agenda
+        var enrollmentList = [];
+        var enrollmentGR = new GlideRecord('x_1795292_learni_0_enrollment');
+        enrollmentGR.addQuery('training_date', agendaGR.sys_id); 
+        enrollmentGR.query();
+
+        while (enrollmentGR.next()) {
+            if (enrollmentGR.student) {
+                enrollmentList.push(enrollmentGR.student.getDisplayValue());
+            }
+        }
+
+        // Monta corpo do e-mail
+        var body = 'Olá ' + instructor.getDisplayValue() + ',<br><br>';
+        body += 'Segue a lista de matriculados para o treinamento <b>' + agendaGR.title_course.getDisplayValue() + '</b> no dia de hoje (' + agendaGR.course_date.getDisplayValue() + '):<br><br>';
+
+        if (enrollmentList.length > 0) {
+            body += enrollmentList.join('<br>');
+        } else {
+            body += '(Nenhum aluno matriculado no momento)';
+        }
+
+        body += '<br><br>Atenciosamente,<br>Sistema Learning Now';
+
+        gs.eventQueueEmailDirect(
+            '', 
+            instructor.email.toString(),
+            'Lista de matriculados — ' + agendaGR.title_course.getDisplayValue(),
+            body
+        );
+    }
+})();
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-09 14:58:52</sys_created_on>
+        <sys_id>dee326e883e87210c31199c0deaad329</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Enrollment Daily List</sys_name>
+        <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
+        <sys_update_name>sysauto_script_dee326e883e87210c31199c0deaad329</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-09 14:58:52</sys_updated_on>
+        <time_zone>America/Sao_Paulo</time_zone>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>dee326e883e87210c31199c0deaad329</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-10-09 14:58:51</sys_created_on>
+        <sys_id>c0f6aae883e87210c31199c0deaad32e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-10-09 14:58:51</sys_updated_on>
+        <table>sysauto_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

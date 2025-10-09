@@ -5,6 +5,7 @@
         <element label="Course Instructor" max_length="32" name="course_instructor" reference="sys_user" reference_qual="roles=x_1795292_learni_0.learning instructor^EQ" reference_qual_condition="roles=x_1795292_learni_0.learning instructor^EQ" type="reference"/>
         <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
         <element display="true" label="Course Date" max_length="40" name="course_date" type="glide_date"/>
+        <element label="Total Slots" max_length="40" name="total_slots" type="integer"/>
         <index name="index">
             <element name="course_instructor"/>
         </index>
