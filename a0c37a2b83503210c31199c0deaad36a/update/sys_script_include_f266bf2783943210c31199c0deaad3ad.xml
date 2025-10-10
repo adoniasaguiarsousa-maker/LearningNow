@@ -16,7 +16,7 @@ LearningNowUtils.prototype = {
     refQualAgenda: function(current) {
         // Pega o curso selecionado
         var courseID = current.variables.training_title;
-        var userID = gs.getUserID(); // Usuário atual logado no portal
+        var userID = gs.getUserID(); 
 
         if (!courseID)
             return "sys_idIN";
@@ -34,7 +34,7 @@ LearningNowUtils.prototype = {
             agendas.push(grAgenda.getUniqueValue());
         }
 
-        // Agora remove agendas que o usuário já está inscrito
+        // remove agendas que o usuário já está inscrito
         var enrolledAgendas = [];
         var grEnroll = new GlideRecord("x_1795292_learni_0_enrollment");
         grEnroll.addQuery("opened_by", userID);
@@ -46,14 +46,13 @@ LearningNowUtils.prototype = {
                 enrolledAgendas.push(agenda);
         }
 
-        // Se tiver alguma inscrição, remove essas agendas da lista
+        // se tiver alguma inscrição, remove essas agendas da lista
         if (enrolledAgendas.length > 0) {
             agendas = agendas.filter(function(a) {
                 return enrolledAgendas.indexOf(a) === -1;
             });
         }
 
-        // Retorna só as agendas do curso ainda disponíveis pro usuário
         return "sys_idIN" + agendas.join(",");
     },
 
@@ -65,7 +64,7 @@ LearningNowUtils.prototype = {
         var courseCounts = {};
         var instructorCourses = [];
 
-		//Buscando os cursos que o user atual está dando aula.
+		//buscando os cursos que o user atual está dando aula.
         var grInstr = new GlideRecord("x_1795292_learni_0_agenda");
         grInstr.addQuery("course_instructor", userID);
         grInstr.query();
@@ -75,7 +74,7 @@ LearningNowUtils.prototype = {
                 instructorCourses.push(c);
         }
 
-        // Conta quantas agendas (datas) o usuário tem por curso
+        // conta quantas agendas o usuário tem por curso
         var grEnroll = new GlideRecord("x_1795292_learni_0_enrollment");
         grEnroll.addQuery("opened_by", userID);
         grEnroll.query();
@@ -84,7 +83,7 @@ LearningNowUtils.prototype = {
             var agendaID = grEnroll.getValue("training_date");
             if (!agendaID) continue;
 
-            // Busca o curso dessa agenda
+            // busca o curso dessa agenda
             var grAgenda = new GlideRecord("x_1795292_learni_0_agenda");
             if (grAgenda.get(agendaID)) {
                 var courseID = grAgenda.getValue("title_course");
@@ -96,7 +95,7 @@ LearningNowUtils.prototype = {
             }
         }
 
-        // Agora busca todos os cursos
+        // agora busca todos os cursos
         var grCourse = new GlideRecord("x_1795292_learni_0_course");
         grCourse.addQuery("active", true);
         grCourse.query();
@@ -105,7 +104,7 @@ LearningNowUtils.prototype = {
             var id = grCourse.getUniqueValue();
             var count = courseCounts[id] || 0;
 
-            // Só mostra cursos onde o usuário tem menos de 3 inscrições e que não é um instrutor tb
+            //só mostra cursos onde o usuário tem menos de 3 inscrições e que não é um instrutor tb
             if (count < 3 && instructorCourses.indexOf(id) === -1)
                 availableCourses.push(id);
         }
@@ -119,14 +118,14 @@ LearningNowUtils.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-10-06 18:13:38</sys_created_on>
         <sys_id>f266bf2783943210c31199c0deaad3ad</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>LearningNowUtils</sys_name>
         <sys_package display_value="Learning Now" source="x_1795292_learni_0">a0c37a2b83503210c31199c0deaad36a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Learning Now">a0c37a2b83503210c31199c0deaad36a</sys_scope>
         <sys_update_name>sys_script_include_f266bf2783943210c31199c0deaad3ad</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-10-08 12:48:29</sys_updated_on>
+        <sys_updated_on>2025-10-10 17:34:38</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>f266bf2783943210c31199c0deaad3ad</id>
